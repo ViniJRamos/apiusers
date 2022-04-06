@@ -16,19 +16,19 @@ module.exports = function(req, res, next){
             }else if(decoded.role === 2){
                 next();
             }else{
-                res.status(403);
-                res.send("Você não tem permissão.");
+                res.status(401);
+                res.json({err: "Você não tem permissão."});
                 return;
             }
             
         }catch(err){
-            res.status(403);
-            res.send("Você não tem permissão.");
+            res.status(401);
+            res.json({err: "Você não tem permissão."});
             return;
         }
     }else{
-        res.status(403);
-        res.send("Você não tem permissão.");
-        return
+        res.status(401);
+        res.json({err: "Você não tem permissão."});
+        return;
     }
 }
