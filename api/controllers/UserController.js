@@ -32,7 +32,7 @@ class UserController{
         var name = req.body.name;
         var email = req.body.email;
         var password = req.body.password;
-        var slug = req.body.slug; //BOTAR PLACEHOLDER PRO SLUG COM VALUE
+        var slug = Math.floor(Math.random() * (parseInt('9999') - parseInt('1111') + 1))
         if(email == '' || email == ' ' || email == undefined){
             res.status(400);
             res.json({err: "Erro no email, revise as informações e tente novamente."});
@@ -140,10 +140,12 @@ class UserController{
                 res.json({token: token})
             }else{
                 res.status(406);
-                res.send("Senha incorreta!")
+                res.json({err: "E-mail ou senha incorreta."})
             }
         }else{
-            res.json({status: false})
+            res.status(406);
+            res.json({err: "E-mail ou senha incorreta."})
+            
         }
     }
 
